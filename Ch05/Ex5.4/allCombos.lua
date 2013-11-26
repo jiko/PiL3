@@ -17,7 +17,7 @@ function allCombos (array, m)
       sub = allCombos(slice(array, i+1), m-1)
       for subi=1, #sub do
         nxt = sub[subi]
-        if type(nxt) == 'string' then nxt = {nxt} end
+        if type(nxt) ~= 'table' then nxt = {nxt} end
         table.insert(nxt, 1, array[i])
         table.insert(ret, nxt)
       end
@@ -26,4 +26,5 @@ function allCombos (array, m)
   return ret
 end
 
-for k, v in pairs(allCombos({"Crosby", "Stills", "Nash", "Young"},3)) do print(unpack(v)) end
+local array = {"Crosby", "Stills", "Nash", "Young"}
+for k, v in pairs(allCombos(array, 3)) do print(unpack(v)) end
